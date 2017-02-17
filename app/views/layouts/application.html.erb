@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hcalocums</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <nav class="navbar navbar-inverse bg-primary">
+      <%= link_to "HCA Locums", root_path, class: "navbar-brand" %>
+      
+      <ul class="navbar-nav">
+      
+        
+      </ul>
+      
+      
+      
+    </nav>
+    
+    <div class="container">
+      
+      <%= yield %>
+      
+    </div>
+    
+  </body>
+</html>
