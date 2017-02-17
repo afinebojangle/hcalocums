@@ -1,0 +1,16 @@
+<div class="col-md-6 offset-md-3">
+  <div class="card">
+    <div class="card-header card-inverse bg-primary">
+      <h2 class="text-white">Forgot your password?</h2>
+    </div>
+    <div class="card-block">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.input :email, autofocus: true, label: "Email" %>
+        <%= f.button :submit, "Send me reset password instructions", class: "btn-primary" %>
+      <% end %>
+      </br>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

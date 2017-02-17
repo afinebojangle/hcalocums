@@ -1,0 +1,18 @@
+<div class="col-md-6 offset-md-3">
+  <div class="card">
+    <div class="card-header card-inverse bg-primary">
+      <h2 class="text-white">Log In</h2>
+    </div>
+    <div class="card-block">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.input :email, label: "Email", autofocus: true %>
+        <%= f.input :password, label: "Password", autocomplete: "off" %>
+        <%= f.input :remember_me, as: :boolean, label: "Remember Me?" %>
+        <%= f.button :submit, "Log In", class: "btn-primary" %>
+      <% end %>
+      </br>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

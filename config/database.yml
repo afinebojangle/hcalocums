@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: hcalocums_production
-  username: hcalocums
-  password: <%= ENV['HCALOCUMS_DATABASE_PASSWORD'] %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
