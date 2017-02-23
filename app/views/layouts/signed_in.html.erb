@@ -17,7 +17,7 @@
       <%= link_to "HCA Locums", root_path, class: "navbar-brand mr-auto" %>
       
       <ul class="nav navbar-nav">
-        <li class="ml-auto"><%= link_to "Sign In", new_user_session_path, class: "nav-link" %></li>
+        <li class="ml-auto"><%= link_to "Sign Out", destroy_user_session_path, class: "nav-link", method: :delete %></li>
       
       </ul>
     </nav>

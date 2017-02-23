@@ -1,0 +1,3 @@
+class DashboardController < SecuredController
+  
+end

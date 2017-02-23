@@ -14,5 +14,15 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= flash[:alert] %>
       </div>
+  <% elsif flash[:validation] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h6>There <%= "is".pluralize(flash[:validation].count) %> <%= pluralize(flash[:validation].count, "error") %>.</h6>
+          <ul>
+            <% flash[:validation].each do |msg| %>
+              <li><%= msg.capitalize %></li>
+            <% end %>
+          </ul>
+    </div>
   <% end %>
 </div>

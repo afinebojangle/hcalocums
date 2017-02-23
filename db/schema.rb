@@ -10,10 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217200650) do
+ActiveRecord::Schema.define(version: 20170222210500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accruals", force: :cascade do |t|
+    t.integer  "coid_id"
+    t.string   "physician"
+    t.string   "agency"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.date     "month"
+    t.string   "expense_type"
+    t.float    "units"
+    t.float    "rate"
+    t.string   "note"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["coid_id"], name: "index_accruals_on_coid_id", using: :btree
+  end
+
+  create_table "coids", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "coid"
+    t.string   "division"
+    t.string   "market"
+    t.string   "group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coid"], name: "index_coids_on_coid", using: :btree
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "coid_id"
+    t.date     "shift_date"
+    t.string   "agency"
+    t.string   "physician"
+    t.float    "hours"
+    t.float    "bill_rate"
+    t.float    "billed_amount"
+    t.string   "expense_type"
+    t.string   "comments"
+    t.integer  "reference_id"
+    t.date     "bill_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["coid_id"], name: "index_payments_on_coid_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
