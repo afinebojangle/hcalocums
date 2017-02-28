@@ -13,6 +13,7 @@ end
 
 gem 'devise'
 gem 'figaro'
+gem 'font-awesome-sass'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

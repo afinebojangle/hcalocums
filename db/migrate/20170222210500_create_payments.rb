@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.date        :shift_date
       t.string      :agency
       t.string      :physician
-      t.float       :hours
+      t.float       :units
       t.float       :bill_rate
       t.float       :billed_amount
       t.string      :expense_type
