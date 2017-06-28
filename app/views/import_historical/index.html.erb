@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-header inverse bg-primary">
+    <h4 class="text-white">Import Historical Records</h4>
+  </div>
+  <div class="card-block">
+    <p>Use this form to import historical data from the old files we used to use. Please <a href="#" data-toggle="modal" data-target="#instructions">click here for more instructions</a>.</p>
+    <hr />
+    
+    
+    <%= form_tag({controller: 'import_historical', action: 'create', method: 'post'}, multipart: true) do %>
+      <div class="col-md-4">
+        
+        <div class="form-group">
+          <%= label_tag(:coid, "Select COID:") %>
+          <%= select_tag(:coid, options_from_collection_for_select(@coids, 'id', 'name'), class: "form-control") %>
+        </div>
+        
+        <div class="form-group">
+          <%= file_field_tag :file %>
+        </div>
+        
+        <div class="form-group">
+          <%= submit_tag("Import File", class: "btn btn-primary") %>
+        </div>
+      </div>  
+    
+    <% end %>
+    
+  </div>
+  
+</div>
+
+
+
+<!-- Instructions Modal -->
+
+<div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="instructionsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Historical Import Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please ensure that all of the following steps have been followed. If even one row is not correctly formatted then the entire import will fail.</p>
+        <ul>
+          <li>Add a column called ACCRUAL DATE. This column is used to note when the accrual was entered into the spreadsheet.
+              So if you go back and add a row to an old month, put today' date here. We use this to make sure we do not import the same data over and over.
+              Keep this in mind as the check is this column against the last created_at date for other accruals. So if you have added an accrual via the form, or already imported an historical
+              file earlier in the day you need to make the accrual date tomorrow. If this is your first time adding anything to this COID (via form or import), choose an arbitrary older date.
+          </li>
+          <li>
+            Each of the columns below must be present and be the specified data-type. Column names are case sensitive.
+            <ol>
+              <li><strong>PHYSICIAN</strong> - General</li>
+              <li><strong>LOCUMS AGENCY</strong> - General</li>
+              <li><strong>START DATE</strong> - Date</li>
+              <li><strong>END DATE</strong> - Date</li>
+              <li><strong>MONTH</strong> - Date</li>
+              <li><strong>EXPENSE TYPE</strong> - General</li>
+              <li><strong># OF DAYS/HOURS</strong> - General</li>
+              <li><strong>RATE</strong> - General</li>
+              <li><strong>COST ESTIMATE</strong> - General</li>
+              <li><strong>COMMENTS</strong> - General</li>
+              <li><strong>INVOICE #</strong> - General</li>
+              <li><strong>INVOICE AMOUNT</strong> - General</li>
+              <li><strong>G/L Date</strong> - Date</li>
+              <li><strong>In Host</strong> - General</li>
+              <li><strong>INVOICE DATE</strong> - DATE</li>
+              <li><strong>Revised Estimate</strong> - General</li>
+              <li><strong>ACCRUAL DATE</strong> - DATE</li>
+            </ol>
+          </li>
+          <li>Save the tab as a CSV file.</li>
+          <li>Select your COID from the dropdown list and then select the CSV file. Click Import.</li>
+          <li>If you have followed all the steps above and still get an error when importing, see Rayford.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

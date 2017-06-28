@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222210500) do
+ActiveRecord::Schema.define(version: 20170627205010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accruals", force: :cascade do |t|
     t.integer  "coid_id"
-    t.string   "physician"
+    t.string   "provider"
     t.string   "agency"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.date     "month"
+    t.date     "shift_date"
     t.string   "expense_type"
     t.float    "units"
     t.float    "rate"
-    t.string   "note"
+    t.float    "accrual"
+    t.string   "reference_id"
+    t.string   "source"
+    t.integer  "month"
+    t.integer  "year"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["coid_id"], name: "index_accruals_on_coid_id", using: :btree
@@ -52,11 +54,39 @@ ActiveRecord::Schema.define(version: 20170222210500) do
     t.float    "billed_amount"
     t.string   "expense_type"
     t.string   "comments"
-    t.integer  "reference_id"
+    t.string   "reference_id"
     t.date     "bill_date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["coid_id"], name: "index_payments_on_coid_id", using: :btree
+  end
+
+  create_table "providers", force: :cascade do |t|
+    t.integer  "coid_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "parallon_name"
+    t.boolean  "active",        default: true, null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "speciality"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["coid_id"], name: "index_providers_on_coid_id", using: :btree
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "coid_id"
+    t.string   "provider"
+    t.string   "agency"
+    t.date     "date"
+    t.integer  "month"
+    t.integer  "year"
+    t.float    "units"
+    t.string   "uom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coid_id"], name: "index_schedules_on_coid_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

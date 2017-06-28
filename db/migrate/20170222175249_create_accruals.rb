@@ -2,15 +2,17 @@ class CreateAccruals < ActiveRecord::Migration[5.0]
   def change
     create_table :accruals do |t|
       t.belongs_to :coid, index: true
-      t.string :physician
-      t.string :agency
-      t.date    :start_date
-      t.date    :end_date
-      t.date    :month
-      t.string  :expense_type
-      t.float   :units
-      t.float   :rate
-      t.string  :note
+      t.string    :provider
+      t.string    :agency
+      t.date      :shift_date
+      t.string    :expense_type
+      t.float     :units
+      t.float     :rate
+      t.float     :accrual
+      t.string    :reference_id
+      t.string    :source
+      t.integer   :month
+      t.integer   :year
       
       t.timestamps
       

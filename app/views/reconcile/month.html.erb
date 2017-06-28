@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header inverse bg-primary">
+    <h4 class="text-white">Reconcile</h4>
+  </div>
+  <div class="card-block">
+    
+    <%= render 'shared/reconcile_menu' %>
+    <hr/>
+    
+    <h5 class="card-title">Reconcile By Month</h5>
+    
+    <%= form_tag({controller: 'reconcile', action: 'month'}, {method: 'get', class: 'form-inline'}) do %>
+      
+      <%= label_tag(:coid, "CoID: ", class: "sr-only") %>
+      <%= select_tag(:coid, options_from_collection_for_select(@coids, 'id', 'name'), class: "form-control mr-2") %>
+      
+      <%= label_tag(:month, "Month: ", class: "sr-only") %>
+      <%= select_tag(:month, options_for_select(@months.collect { |month| [month[:name], month[:number]] }), class: "form-control mr-2") %>
+      
+      <%= label_tag(:year, "Year: ", class: "sr-only") %>
+      <%= select_tag(:year, options_for_select(@years, Date.today.year), class: "form-control mr-2") %>
+      
+      <%= submit_tag("Refresh", class: "btn btn-primary") %>
+    
+    <% end %>
+  </div>
+</div>

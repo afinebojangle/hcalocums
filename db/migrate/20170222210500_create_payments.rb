@@ -10,7 +10,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.float       :billed_amount
       t.string      :expense_type
       t.string      :comments
-      t.integer     :reference_id
+      t.string      :reference_id
       t.date        :bill_date
       
       t.timestamps
